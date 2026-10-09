@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+/* ── Design tokens ─────────────────────────────────── */
+:root {
+  --amber:        #F97316;
+  --amber-light:  #FFF7ED;
+  --amber-dark:   #EA6C10;
+  --coral:        #F43F5E;
+  --coral-light:  #FFF1F3;
+  --coral-dark:   #E11D48;
+  --emerald:      #10B981;
+  --emerald-light:#ECFDF5;
+  --emerald-dark: #059669;
+  --teal:         #0D9488;
+  --teal-light:   #F0FDFA;
+  --bg:           #FAFAF8;
+  --surface:      #FFFFFF;
+  --border:       #E8E8E4;
+  --text:         #1A1A1A;
+  --text-muted:   #6B7280;
+  --text-light:   #9CA3AF;
+}
+
+/* ── Reset ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+}
+
+/* ── Layout utilities ─────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.container-wide {
+  width: 100%;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* ── Page wrapper ─────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* ── Card ─────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
+
+/* ── Buttons ──────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.15s;
+  text-decoration: none;
+}
+.btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.btn-amber  { background: var(--amber);   color: #fff; }
+.btn-coral  { background: var(--coral);   color: #fff; }
+.btn-emerald{ background: var(--emerald); color: #fff; }
+.btn-outline{ background: transparent; border: 1.5px solid var(--border); color: var(--text-muted); }
+.btn-lg { font-size: 1.125rem; padding: 1rem 2.25rem; border-radius: 1rem; }
+
+/* ── Input ────────────────────────────────────────── */
+.input {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: var(--text);
+  background: var(--surface);
+  font-family: inherit;
+  transition: border-color 0.15s;
+  outline: none;
+}
+.input:focus { border-color: var(--amber); }
+.input::placeholder { color: var(--text-light); }
+
+textarea.input { resize: none; }
+
+/* ── Badge ────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+}
+.badge-coral   { background: var(--coral-light);   color: var(--coral); }
+.badge-emerald { background: var(--emerald-light); color: var(--emerald-dark); }
+.badge-amber   { background: var(--amber-light);   color: var(--amber-dark); }
+.badge-teal    { background: var(--teal-light);    color: var(--teal); }
+
+/* ── Section spacing ──────────────────────────────── */
+.section { padding: 5rem 1rem; }
+.section-sm { padding: 3rem 1rem; }
+
+/* ── Grid helpers ─────────────────────────────────── */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 640px) {
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+@media (min-width: 641px) and (max-width: 768px) {
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Flex helpers ─────────────────────────────────── */
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+/* ── Typography ───────────────────────────────────── */
+.heading-xl { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; color: var(--text); }
+.heading-lg { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 800; color: var(--text); }
+.heading-md { font-size: 1.125rem; font-weight: 700; color: var(--text); }
+.text-muted  { color: var(--text-muted); }
+.text-light  { color: var(--text-light); }
+
+/* ── Scrollbar ────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 3px; }
+
+/* ── Transitions ──────────────────────────────────── */
+button, a { transition: all 0.15s ease; }
+*:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+/* ── Divider ──────────────────────────────────────── */
+.divider { height: 1px; background: var(--border); }
